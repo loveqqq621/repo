@@ -19,7 +19,7 @@ class Core(object):
         environ['SDL_VIDEO_CENTERED'] = '1'
         pg.mixer.pre_init(44100, -16, 2, 1024)
         pg.init()
-        pg.display.set_caption('Mario by S&D')
+        pg.display.set_caption('Mario Limited Edition')
         pg.display.set_mode((WINDOW_W, WINDOW_H))
 
         self.screen = pg.display.set_mode((WINDOW_W, WINDOW_H))
@@ -62,7 +62,7 @@ class Core(object):
                     self.keyL = True
                 elif e.key == K_DOWN:
                     self.keyD = True
-                elif e.key == K_UP:
+                elif e.key == K_SPACE:
                     self.keyU = True
                 elif e.key == K_LSHIFT:
                     self.keyShift = True
@@ -74,7 +74,7 @@ class Core(object):
                     self.keyL = False
                 elif e.key == K_DOWN:
                     self.keyD = False
-                elif e.key == K_UP:
+                elif e.key == K_SPACE:
                     self.keyU = False
                 elif e.key == K_LSHIFT:
                     self.keyShift = False
