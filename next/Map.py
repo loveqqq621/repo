@@ -80,7 +80,6 @@ class Map(object):
                     # It's none if there are no tile in that place
                     if image is not None:
                         tileID = tmx_data.get_tile_gid(x, y, layer_num)
-                        print(tileID)
 
                         if layer.name == 'Foreground':
 
