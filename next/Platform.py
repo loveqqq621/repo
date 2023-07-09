@@ -22,6 +22,12 @@ class Platform(object):
             self.isActivated = False
             self.bonus = 'coin'
 
+        elif self.typeID == 24:
+            self.currentImage = 0
+            self.imageTick = 0
+            self.isActivated = False
+            self.bonus = 'coin'
+
     def update(self):
         if self.typeID == 22:
             self.imageTick += 1
@@ -34,6 +40,20 @@ class Platform(object):
             elif self.imageTick == 80:
                 self.currentImage = 0
                 self.imageTick = 0
+                
+        elif self.typeID == 24:
+            self.imageTick += 1
+            if self.imageTick == 50:
+                self.currentImage = 1
+            elif self.imageTick == 60:
+                self.currentImage = 2
+            elif self.imageTick == 70:
+                self.currentImage = 1
+            elif self.imageTick == 80:
+                self.currentImage = 0
+                self.imageTick = 0
+        
+        
 
     def shake(self):
         if self.shakingUp:
@@ -75,6 +95,13 @@ class Platform(object):
 
         # Question block
         if self.typeID == 22:
+            if not self.isActivated:
+                self.update()
+            elif self.shaking:
+                self.shake()
+            core.screen.blit(self.image[self.currentImage], core.get_map().get_camera().apply(self))
+        
+        elif self.typeID == 24:
             if not self.isActivated:
                 self.update()
             elif self.shaking:

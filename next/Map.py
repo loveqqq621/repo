@@ -92,6 +92,14 @@ class Map(object):
                                     tmx_data.get_tile_image(2, 15, layer_num)    # activated
                                 )
 
+                            elif tileID == 24:
+                                image = (
+                                    image,                                      # 1
+                                    tmx_data.get_tile_image(0, 16, layer_num),   # 2
+                                    tmx_data.get_tile_image(1, 16, layer_num),   # 3
+                                    tmx_data.get_tile_image(2, 15, layer_num)    # activated
+                                )
+
                             # Map class has 1)"map" list, which is used in collision system because we can
                             # easily get block by x and y coordinate 2)"obj", "obj_bg" and simular arrays -
                             # they are used in rendering because you don't need to cycle through every
@@ -113,16 +121,17 @@ class Map(object):
         self.spawn_tube(179, 10)
 
         # Mobs
-        self.mobs.append(Goombas(736, 352, False))
+        # self.mobs.append(Goombas(736, 352, False))
         # self.mobs.append(Goombas(1295, 352, True))
         # self.mobs.append(Goombas(1632, 352, False))
         # self.mobs.append(Goombas(1672, 352, False))
         # self.mobs.append(Goombas(5570, 352, False))
         # self.mobs.append(Goombas(5620, 352, False))
-
-        # self.map[21][8].bonus = 'mushroom'
-        self.map[78][8].bonus = 'mushroom'
-        self.map[109][4].bonus = 'mushroom'
+        
+        self.map[129][4].bonus = 'mushroom'
+        self.map[152][4].bonus = 'mushroom'
+        self.map[169][8].bonus = 'mushroom'
+        self.map[170][8].bonus = 'mushroom'
 
         self.flag = Flag(6336, 48)
 
@@ -221,9 +230,12 @@ class Map(object):
     def spawn_koopa(self, x, y, move_direction):
         self.get_mobs().append(Koopa(x, y, move_direction))
 
+    # def spawn_flower(self, x, y):
+    #     self.mobs.append(Flower(x, y))
     def spawn_flower(self, x, y):
-        self.mobs.append(Flower(x, y))
+        self.get_mobs().append(Mushroom(x, y, True))
 
+    
     def spawn_debris(self, x, y, type):
         if type == 0:
             self.debris.append(PlatformDebris(x, y))
