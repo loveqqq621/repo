@@ -1,52 +1,51 @@
 import pygame as pg
 
 from Entity import Entity
+from Const import *
 
 
 class Flower(Entity):
-    def __init__(self, x_pos, y_pos):
+    def __init__(self, x_pos, y_pos, move_direction):
         super().__init__()
 
         self.rect = pg.Rect(x_pos, y_pos, 32, 32)
+
+        if move_direction:
+            self.x_vel = 1
+        else:
+            self.x_vel = -1
+
         self.spawned = False
         self.spawn_y_offset = 0
-
-        self.current_image = 0
-        self.image_tick = 0
-        self.images = (
-            pg.image.load('images/flower0.png').convert_alpha(),
-            pg.image.load('images/flower1.png').convert_alpha(),
-            pg.image.load('images/flower2.png').convert_alpha(),
-            pg.image.load('images/flower3.png').convert_alpha()
-        )
+        self.image = pg.image.load('images/mushroom_ring.png').convert_alpha()
 
     def check_collision_with_player(self, core):
         if self.rect.colliderect(core.get_map().get_player().rect):
-            core.get_map().get_player().set_powerlvl(3, core)
+            core.get_map().get_player().set_powerlvl(2, core)
             core.get_map().get_mobs().remove(self)
 
-    def update_image(self):
-        self.image_tick += 1
-
-        if self.image_tick == 60:
-            self.image_tick = 0
-            self.current_image = 0
-
-        elif self.image_tick % 15 == 0:
-            self.current_image += 1
+    def die(self, core, instantly, crushed):
+        core.get_map().get_mobs().remove(self)
 
     def spawn_animation(self):
         self.spawn_y_offset -= 1
         self.rect.y -= 1
 
-        if self.spawn_y_offset == -32:
+        if self.spawn_y_offset == - 32:
             self.spawned = True
 
     def update(self, core):
         if self.spawned:
-            self.update_image()
+            if not self.on_ground:
+                self.y_vel += GRAVITY
+
+            blocks = core.get_map().get_blocks_for_collision(self.rect.x // 32, self.rect.y // 32)
+            self.update_x_pos(blocks)
+            self.update_y_pos(blocks)
+
+            self.check_map_borders(core)
         else:
             self.spawn_animation()
 
     def render(self, core):
-        core.screen.blit(self.images[self.current_image], core.get_map().get_camera().apply(self))
+        core.screen.blit(self.image, core.get_map().get_camera().apply(self))

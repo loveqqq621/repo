@@ -230,12 +230,11 @@ class Map(object):
     def spawn_koopa(self, x, y, move_direction):
         self.get_mobs().append(Koopa(x, y, move_direction))
 
-    # def spawn_flower(self, x, y):
-    #     self.mobs.append(Flower(x, y))
     def spawn_flower(self, x, y):
-        self.get_mobs().append(Mushroom(x, y, True))
+        self.mobs.append(Flower(x, y, True))
 
-    
+
+
     def spawn_debris(self, x, y, type):
         if type == 0:
             self.debris.append(PlatformDebris(x, y))
