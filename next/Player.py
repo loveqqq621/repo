@@ -329,6 +329,11 @@ class Player(object):
             if not block.isActivated:
                 block.spawn_bonus(core)
 
+        if block.typeID == 24:
+            core.get_sound().play('block_hit', 0, 0.5)
+            if not block.isActivated:
+                block.spawn_bonus(core)
+
         # Brick Platform
         elif block.typeID == 23:
             if self.powerLVL == 0:
