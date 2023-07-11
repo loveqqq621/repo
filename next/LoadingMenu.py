@@ -1,7 +1,7 @@
 import pygame as pg
 
 from Const import *
-from Text import Text
+from Text import Text, Text_ch
 
 
 class LoadingMenu(object):
@@ -24,6 +24,10 @@ class LoadingMenu(object):
 
     def set_text_and_type(self, text, type):
         self.text = Text(text, 32, (WINDOW_W / 2, WINDOW_H / 2))
+        self.loadingType = type
+
+    def set_text_and_type_ch(self, text, type):
+        self.text = Text_ch(text, 32, (WINDOW_W / 2, WINDOW_H / 2))
         self.loadingType = type
 
     def render(self, core):
