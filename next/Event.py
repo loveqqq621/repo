@@ -96,7 +96,9 @@ class Event(object):
                     core.get_sound().play('overworld', 9999999, 0.5)
                 else:
                     core.get_mm().currentGameState = 'Loading'
-                    core.get_mm().oLoadingMenu.set_text_and_type('GAME OVER', False)
+
+                    # gameover文案修改
+                    core.get_mm().oLoadingMenu.set_text_and_type_ch('游戏结束', False)
                     core.get_mm().oLoadingMenu.update_time()
                     core.get_sound().play('game_over', 0, 0.5)
 
@@ -135,6 +137,10 @@ class Event(object):
 
                     elif pg.time.get_ticks() >= self.time + self.delay:
                         core.get_mm().currentGameState = 'Loading'
-                        core.get_mm().oLoadingMenu.set_text_and_type('BY S&D :)', False)
+
+                        # 通关文字修改
+                        core.get_mm().oLoadingMenu.set_text_and_type_ch('通关', False)
                         core.get_mm().oLoadingMenu.update_time()
+
+                        # 通关提示音修改
                         core.get_sound().play('game_over', 0, 0.5)
