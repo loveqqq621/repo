@@ -13,8 +13,9 @@ class Flag(object):
         self.pillar_image = pg.image.load('images/flag_pillar.png').convert_alpha()
         self.pillar_rect = pg.Rect(x_pos + 8, y_pos, 16, 304)
 
-        self.flag_image = pg.image.load('images/flag.png').convert_alpha()
-        self.flag_rect = pg.Rect(x_pos - 18, y_pos + 16, 32, 32)
+        self.flag_image = pg.image.load('images/flag2.png').convert_alpha()
+        self.flag_rect = pg.Rect(x_pos - 50, y_pos + 16, 64, 64)
+        # self.flag_rect = pg.Rect(x_pos - 18, y_pos + 16, 64, 64)
 
     def move_flag_down(self):
         self.flag_offset += 3

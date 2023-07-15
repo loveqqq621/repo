@@ -97,8 +97,7 @@ class Event(object):
                 else:
                     core.get_mm().currentGameState = 'Loading'
 
-                    # gameover文案修改
-                    core.get_mm().oLoadingMenu.set_text_and_type_ch('游戏结束', False)
+                    core.get_mm().oLoadingMenu.set_text_and_type('GAME OVER', False)
                     core.get_mm().oLoadingMenu.update_time()
                     core.get_sound().play('game_over', 0, 0.5)
 
