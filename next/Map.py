@@ -121,15 +121,23 @@ class Map(object):
         self.spawn_tube(179, 10)
 
         # Mobs
-        # self.mobs.append(Goombas(736, 352, False))
-        # self.mobs.append(Goombas(1295, 352, True))
-        # self.mobs.append(Goombas(1632, 352, False))
-        # self.mobs.append(Goombas(1672, 352, False))
+        # (23, 11)
+        self.mobs.append(Goombas(736, 352, False))
+        # (40, 11)
+        self.mobs.append(Goombas(1295, 352, True))
+        # (51, 11)
+        self.mobs.append(Goombas(1632, 352, False))
+        # (52, 11)
+        self.mobs.append(Goombas(1672, 352, False))
         # self.mobs.append(Goombas(5570, 352, False))
         # self.mobs.append(Goombas(5620, 352, False))
-        
-        self.map[129][4].bonus = 'mushroom'
-        self.map[152][4].bonus = 'mushroom'
+
+        # (121, 11)
+        self.mobs.append(Goombas(3872, 352, False))
+
+
+        self.map[21][8].bonus = 'mushroom'
+        self.map[23][8].bonus = 'mushroom'
         self.map[169][8].bonus = 'mushroom'
         self.map[170][8].bonus = 'mushroom'
 
@@ -329,19 +337,24 @@ class Map(object):
         These mobs will appear when player will reach the certain x-coordinate
 
         """
+        # 2080/32 = 65
         if self.get_player().rect.x > 2080 and not self.is_mob_spawned[0]:
             self.spawn_goombas(2495, 224, False)
-            # self.spawn_goombas(2560, 96, False)
+            self.spawn_goombas(2560, 96, False)
             self.is_mob_spawned[0] = True
 
+        # 2460/32 = 76
         elif self.get_player().rect.x > 2460 and not self.is_mob_spawned[1]:
             self.spawn_goombas(3200, 352, False)
-            # self.spawn_goombas(3250, 352, False)
-            # self.spawn_koopa(3400, 352, False)
-            # self.spawn_goombas(3700, 352, False)
+            self.spawn_goombas(3250, 352, False)
+            self.spawn_koopa(3400, 352, False)
+
+            self.spawn_goombas(3700, 352, False)
             # self.spawn_goombas(3750, 352, False)
-            # self.spawn_goombas(4060, 352, False)
+
+            self.spawn_goombas(4060, 352, False)
             # self.spawn_goombas(4110, 352, False)
+            
             # self.spawn_goombas(4190, 352, False)
             # self.spawn_goombas(4240, 352, False)
             self.is_mob_spawned[1] = True
