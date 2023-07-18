@@ -17,7 +17,7 @@ class Flower(Entity):
 
         self.spawned = False
         self.spawn_y_offset = 0
-        self.image = pg.image.load('images/mushroom_ring.png').convert_alpha()
+        self.image = pg.image.load('images/ring_remake.png').convert_alpha()
 
     def check_collision_with_player(self, core):
         if self.rect.colliderect(core.get_map().get_player().rect):
