@@ -137,9 +137,14 @@ class Map(object):
 
 
         self.map[21][8].bonus = 'mushroom'
-        self.map[23][8].bonus = 'mushroom'
-        self.map[169][8].bonus = 'mushroom'
-        self.map[170][8].bonus = 'mushroom'
+        self.map[78][8].bonus = 'mushroom'
+        
+
+        self.map[129][8].bonus = 'ring'
+        self.map[152][4].bonus = 'ring'
+        self.map[168][8].bonus = 'ring'
+        self.map[170][8].bonus = 'ring'
+
 
         self.flag = Flag(6336, 48)
 
