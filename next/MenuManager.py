@@ -22,6 +22,9 @@ class MenuManager(object):
         if self.currentGameState == 'MainMenu':
             pass
 
+        elif self.currentGameState == 'Ending':
+            pass
+
         elif self.currentGameState == 'Loading':
             self.oLoadingMenu.update(core)
 
@@ -32,6 +35,9 @@ class MenuManager(object):
         if self.currentGameState == 'MainMenu':
             core.get_map().render_map(core)
             self.oMainMenu.render(core)
+        
+        elif self.currentGameState == 'Ending':
+            self.oMainMenu.render_end(core)
 
         elif self.currentGameState == 'Loading':
             self.oLoadingMenu.render(core)

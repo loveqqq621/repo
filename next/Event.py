@@ -135,10 +135,14 @@ class Event(object):
                         self.time = pg.time.get_ticks()
 
                     elif pg.time.get_ticks() >= self.time + self.delay:
-                        core.get_mm().currentGameState = 'Loading'
+                        # core.get_mm().currentGameState = 'Loading'
+
+                        # 增加游戏结束的state
+                        core.get_mm().currentGameState = 'Ending'
+
 
                         # 通关文字修改
-                        core.get_mm().oLoadingMenu.set_text_and_type_ch('通关', False)
+                        core.get_mm().oLoadingMenu.set_text_and_type('Bye', False)
                         core.get_mm().oLoadingMenu.update_time()
 
                         # 通关提示音修改
