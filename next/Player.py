@@ -324,18 +324,18 @@ class Player(object):
 
     def activate_block_action(self, core, block):
         # Question Block
-        if block.typeID == 22:
+        if block.typeID == 148:
             core.get_sound().play('block_hit', 0, 0.5)
             if not block.isActivated:
                 block.spawn_bonus(core)
 
-        if block.typeID == 24:
+        if block.typeID == 150:
             core.get_sound().play('block_hit', 0, 0.5)
             if not block.isActivated:
                 block.spawn_bonus(core)
 
         # Brick Platform
-        elif block.typeID == 23:
+        elif block.typeID == 149:
             if self.powerLVL == 0:
                 block.shaking = True
                 core.get_sound().play('block_hit', 0, 0.5)
@@ -407,7 +407,33 @@ class Player(object):
             core.get_sound().play('mushroom_eat', 0, 0.5)
             core.get_map().spawn_score_text(self.rect.x + 16, self.rect.y, score=1000)
             self.add_score(1000)
+            self.powerLVL = 1
+
+        elif self.powerLVL > power_lvl:
+            core.get_sound().play('pipe', 0, 0.5)
+            self.inLevelDownAnimation = True
+            self.inLevelDownAnimationTime = 200
+            self.unkillable = True
+            self.unkillableTime = 200
+
+        else:
+            core.get_sound().play('mushroom_eat', 0, 0.5)
+            core.get_map().spawn_score_text(self.rect.x + 16, self.rect.y, score=1000)
+            self.add_score(1000)
+
+    def set_powerlvl_flower(self, power_lvl, core):
+        if self.powerLVL == 0 == power_lvl and not self.unkillable:
+            core.get_map().player_death(core)
+            self.inLevelUpAnimation = False
+            self.inLevelDownAnimation = False
+
+        elif self.powerLVL < power_lvl:
             self.powerLVL = 2
+            core.get_sound().play('mushroom_eat', 0, 0.5)
+            core.get_map().spawn_score_text(self.rect.x + 16, self.rect.y, score=1000)
+            self.add_score(1000)
+            self.inLevelUpAnimation = True
+            self.inLevelUpAnimationTime = 61
 
         elif self.powerLVL > power_lvl:
             core.get_sound().play('pipe', 0, 0.5)

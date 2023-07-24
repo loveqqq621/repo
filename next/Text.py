@@ -22,8 +22,8 @@ class Text(object):
         core.screen.blit(self.text, core.get_map().get_camera().apply(self))
 
 class Text_ch(object):
-    def __init__(self, text, fontsize, rectcenter, font='dianyingzimuti', textcolor = (255, 255, 255)):
-        self.font = pg.font.Font('fonts/dianyingzimuti.ttf', fontsize)
+    def __init__(self, text, fontsize, rectcenter, font='ch_bold', textcolor = (255, 255, 255)):
+        self.font = pg.font.Font('fonts/ch_bold.ttf', fontsize)
         self.text = self.font.render(text, False, textcolor)
         self.rect = self.text.get_rect(center=rectcenter)
         self.y_offset = 0
