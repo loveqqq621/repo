@@ -21,7 +21,7 @@ class Mushroom(Entity):
 
     def check_collision_with_player(self, core):
         if self.rect.colliderect(core.get_map().get_player().rect):
-            core.get_map().get_player().set_powerlvl(2, core)
+            core.get_map().get_player().set_powerlvl(1, core)
             core.get_map().get_mobs().remove(self)
 
     def die(self, core, instantly, crushed):

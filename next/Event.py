@@ -81,6 +81,7 @@ class Event(object):
             core.get_map().get_player().add_score(1000)
             core.get_map().spawn_score_text(core.get_map().get_player().rect.x + 16, core.get_map().get_player().rect.y, score=1000)
 
+
     def update(self, core):
 
         # Death
@@ -142,8 +143,8 @@ class Event(object):
 
 
                         # 通关文字修改
-                        core.get_mm().oLoadingMenu.set_text_and_type('Bye', False)
+                        core.get_mm().oLoadingMenu.set_text_and_type('TO BE CONTINUED', False)
                         core.get_mm().oLoadingMenu.update_time()
 
                         # 通关提示音修改
-                        core.get_sound().play('game_over', 0, 0.5)
+                        # core.get_sound().play('end_bgm', 0, 0.5)

@@ -60,7 +60,7 @@ class Map(object):
         self.oGameUI = GameUI()
 
     def loadWorld_11(self):
-        tmx_data = load_pygame("worlds/1-1/W11.tmx")
+        tmx_data = load_pygame("worlds/1-1/W11_ver0723.tmx")
         self.mapSize = (tmx_data.width, tmx_data.height)
 
         self.sky = pg.Surface((WINDOW_W, WINDOW_H))
@@ -83,8 +83,8 @@ class Map(object):
 
                         if layer.name == 'Foreground':
 
-                            # 22 ID is a question block, so in taht case we shoud load all it's images
-                            if tileID == 22:
+                            # 148 ID is a question block, so in taht case we shoud load all it's images
+                            if tileID == 148:
                                 image = (
                                     image,                                      # 1
                                     tmx_data.get_tile_image(0, 15, layer_num),   # 2
@@ -92,7 +92,7 @@ class Map(object):
                                     tmx_data.get_tile_image(2, 15, layer_num)    # activated
                                 )
 
-                            elif tileID == 24:
+                            elif tileID == 150:
                                 image = (
                                     image,                                      # 1
                                     tmx_data.get_tile_image(0, 16, layer_num),   # 2
@@ -117,8 +117,8 @@ class Map(object):
         self.spawn_tube(37, 9)
         self.spawn_tube(46, 8)
         self.spawn_tube(55, 8)
-        self.spawn_tube(163, 10)
-        self.spawn_tube(179, 10)
+        # self.spawn_tube(163, 10)
+        # self.spawn_tube(179, 10)
 
         # Mobs
         # (23, 11)
@@ -137,11 +137,10 @@ class Map(object):
 
 
         self.map[21][8].bonus = 'mushroom'
-        self.map[78][8].bonus = 'mushroom'
-        
+        self.map[112][8].bonus = 'mushroom'
 
-        self.map[129][8].bonus = 'ring'
-        self.map[152][4].bonus = 'ring'
+        self.map[144][8].bonus = 'ring'
+        self.map[151][4].bonus = 'ring'
         self.map[168][8].bonus = 'ring'
         self.map[170][8].bonus = 'ring'
 
@@ -335,13 +334,14 @@ class Map(object):
         if not core.get_map().get_player().unkillable:
             for mob in self.mobs:
                 mob.check_collision_with_player(core)
-
+    
     def try_spawn_mobs(self, core):
         """
 
         These mobs will appear when player will reach the certain x-coordinate
 
         """
+
         # 2080/32 = 65
         if self.get_player().rect.x > 2080 and not self.is_mob_spawned[0]:
             self.spawn_goombas(2495, 224, False)
@@ -354,7 +354,7 @@ class Map(object):
             self.spawn_goombas(3250, 352, False)
             self.spawn_koopa(3400, 352, False)
 
-            self.spawn_goombas(3700, 352, False)
+            # self.spawn_goombas(3700, 352, False)
             # self.spawn_goombas(3750, 352, False)
 
             self.spawn_goombas(4060, 352, False)
@@ -363,6 +363,14 @@ class Map(object):
             # self.spawn_goombas(4190, 352, False)
             # self.spawn_goombas(4240, 352, False)
             self.is_mob_spawned[1] = True
+        
+        # 红毯音乐
+        elif self.get_player().rect.x > 5400:
+            # print(111)
+            core.get_sound().stop('overworld')
+            core.get_sound().play('end_bgm', 0, 0.5)
+        
+
 
     def player_death(self, core):
         self.in_event = True
@@ -422,7 +430,6 @@ class Map(object):
             self.get_camera().update(core.get_map().get_player().rect)
 
         self.try_spawn_mobs(core)
-
         self.update_time(core)
         self.update_score_time()
 
