@@ -324,18 +324,18 @@ class Player(object):
 
     def activate_block_action(self, core, block):
         # Question Block
-        if block.typeID == 148:
+        if block.typeID == QUESTION_ICON_ID:
             core.get_sound().play('block_hit', 0, 0.5)
             if not block.isActivated:
                 block.spawn_bonus(core)
 
-        if block.typeID == 150:
+        if block.typeID == QUESTION_SPECIAL_ID:
             core.get_sound().play('block_hit', 0, 0.5)
             if not block.isActivated:
                 block.spawn_bonus(core)
 
         # Brick Platform
-        elif block.typeID == 149:
+        elif block.typeID == BRICK_ID:
             if self.powerLVL == 0:
                 block.shaking = True
                 core.get_sound().play('block_hit', 0, 0.5)

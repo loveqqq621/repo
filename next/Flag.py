@@ -13,15 +13,19 @@ class Flag(object):
         self.pillar_image = pg.image.load('images/flag_pillar.png').convert_alpha()
         self.pillar_rect = pg.Rect(x_pos + 8, y_pos, 16, 304)
 
-        self.flag_image = pg.image.load('images/flag2.png').convert_alpha()
-        self.flag_rect = pg.Rect(x_pos - 50, y_pos + 16, 64, 64)
-        # self.flag_rect = pg.Rect(x_pos - 18, y_pos + 16, 64, 64)
+        # self.flag_image = pg.image.load('images/flag2.png').convert_alpha()
+        # self.flag_rect = pg.Rect(x_pos - 50, y_pos + 16, 64, 64)
+
+        # 尝试婚纱图片的大小
+        self.flag_image = pg.image.load('images/dress_high_pixel.png').convert_alpha()
+        self.flag_rect = pg.Rect(x_pos - 65, y_pos - 45, 138, 156)
+
 
     def move_flag_down(self):
         self.flag_offset += 3
         self.flag_rect.y += 3
 
-        if self.flag_offset >= 255:
+        if self.flag_offset >= 225:
             self.flag_omitted = True
 
     def render(self, core):

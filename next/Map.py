@@ -83,8 +83,8 @@ class Map(object):
 
                         if layer.name == 'Foreground':
 
-                            # 148 ID is a question block, so in taht case we shoud load all it's images
-                            if tileID == 148:
+                            # ID of question block, so in taht case we shoud load all it's images
+                            if tileID == QUESTION_ICON_ID:
                                 image = (
                                     image,                                      # 1
                                     tmx_data.get_tile_image(0, 15, layer_num),   # 2
@@ -92,7 +92,7 @@ class Map(object):
                                     tmx_data.get_tile_image(2, 15, layer_num)    # activated
                                 )
 
-                            elif tileID == 150:
+                            elif tileID == QUESTION_SPECIAL_ID:
                                 image = (
                                     image,                                      # 1
                                     tmx_data.get_tile_image(0, 16, layer_num),   # 2
@@ -129,6 +129,8 @@ class Map(object):
         self.mobs.append(Goombas(1632, 352, False))
         # (52, 11)
         self.mobs.append(Goombas(1672, 352, False))
+        
+        # omitted
         # self.mobs.append(Goombas(5570, 352, False))
         # self.mobs.append(Goombas(5620, 352, False))
 
@@ -345,7 +347,7 @@ class Map(object):
         # 2080/32 = 65
         if self.get_player().rect.x > 2080 and not self.is_mob_spawned[0]:
             self.spawn_goombas(2495, 224, False)
-            self.spawn_goombas(2560, 96, False)
+            # self.spawn_goombas(2560, 96, False)
             self.is_mob_spawned[0] = True
 
         # 2460/32 = 76
@@ -353,13 +355,13 @@ class Map(object):
             self.spawn_goombas(3200, 352, False)
             self.spawn_goombas(3250, 352, False)
             self.spawn_koopa(3400, 352, False)
+            self.spawn_goombas(4060, 352, False)
 
+
+            # omitted
             # self.spawn_goombas(3700, 352, False)
             # self.spawn_goombas(3750, 352, False)
-
-            self.spawn_goombas(4060, 352, False)
             # self.spawn_goombas(4110, 352, False)
-            
             # self.spawn_goombas(4190, 352, False)
             # self.spawn_goombas(4240, 352, False)
             self.is_mob_spawned[1] = True

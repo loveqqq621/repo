@@ -1,13 +1,12 @@
 import pygame as pg
-
+from Const import *
 
 class Platform(object):
     def __init__(self, x, y, image, type_id):
         self.image = image
         self.rect = pg.Rect(x, y, 32, 32)
 
-        # 148 - question block
-        # 149 - brick block
+        # use tiled id for question block & brick block
         self.typeID = type_id
 
         self.type = 'Platform'
@@ -16,20 +15,20 @@ class Platform(object):
         self.shakingUp = True
         self.shakeOffset = 0
 
-        if self.typeID == 148:
+        if self.typeID == QUESTION_ICON_ID:
             self.currentImage = 0
             self.imageTick = 0
             self.isActivated = False
             self.bonus = 'coin'
 
-        elif self.typeID == 150:
+        elif self.typeID == QUESTION_SPECIAL_ID:
             self.currentImage = 0
             self.imageTick = 0
             self.isActivated = False
             self.bonus = 'coin'
 
     def update(self):
-        if self.typeID == 148:
+        if self.typeID == QUESTION_ICON_ID:
             self.imageTick += 1
             if self.imageTick == 50:
                 self.currentImage = 1
@@ -41,7 +40,7 @@ class Platform(object):
                 self.currentImage = 0
                 self.imageTick = 0
                 
-        elif self.typeID == 150:
+        elif self.typeID == QUESTION_SPECIAL_ID:
             self.imageTick += 1
             if self.imageTick == 50:
                 self.currentImage = 1
@@ -98,14 +97,14 @@ class Platform(object):
     def render(self, core):
 
         # Question block
-        if self.typeID == 148:
+        if self.typeID == QUESTION_ICON_ID:
             if not self.isActivated:
                 self.update()
             elif self.shaking:
                 self.shake()
             core.screen.blit(self.image[self.currentImage], core.get_map().get_camera().apply(self))
         
-        elif self.typeID == 150:
+        elif self.typeID == QUESTION_SPECIAL_ID:
             if not self.isActivated:
                 self.update()
             elif self.shaking:
@@ -113,7 +112,7 @@ class Platform(object):
             core.screen.blit(self.image[self.currentImage], core.get_map().get_camera().apply(self))
 
         # Brick block
-        elif self.typeID == 149 and self.shaking:
+        elif self.typeID == BRICK_ID and self.shaking:
             self.shake()
             core.screen.blit(self.image, core.get_map().get_camera().apply(self))
 
