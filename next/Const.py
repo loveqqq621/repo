@@ -24,3 +24,12 @@ MAX_MOVE_SPEED = 2.0
 MAX_FASTMOVE_SPEED = 3.0
 MAX_FALL_SPEED = 5.5
 
+
+# icons tiled id
+
+# 黄色问号 - 出coin
+QUESTION_ICON_ID = 141
+# 粉色问号 - 出蘑菇/戒指
+QUESTION_SPECIAL_ID = 143
+# 砖块
+BRICK_ID = 142
