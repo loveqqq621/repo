@@ -28,8 +28,12 @@ MAX_FALL_SPEED = 5.5
 # icons tiled id
 
 # 黄色问号 - 出coin
-QUESTION_ICON_ID = 141
-# 粉色问号 - 出蘑菇/戒指
-QUESTION_SPECIAL_ID = 143
+QUESTION_ICON_ID = 229
+
 # 砖块
-BRICK_ID = 142
+BRICK_ID = 230
+
+# 粉色问号 - 出蘑菇/戒指
+QUESTION_SPECIAL_ID = 231
+
+TMX_FILE = 'worlds/1-1/W11_ver112.tmx'

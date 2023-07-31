@@ -24,7 +24,7 @@ class Sound(object):
         self.sounds['scorering'] = pg.mixer.Sound('sounds/scorering.wav')
         self.sounds['fireball'] = pg.mixer.Sound('sounds/fireball.wav')
         self.sounds['shot'] = pg.mixer.Sound('sounds/shot.wav')
-        self.sounds['end_bgm'] = pg.mixer.Sound('sounds/end_bgm.wav')
+        self.sounds['bgm'] = pg.mixer.Sound('sounds/bgm.wav')
 
     def play(self, name, loops, volume):
         self.sounds[name].play(loops=loops)

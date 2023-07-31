@@ -117,7 +117,7 @@ class Event(object):
                     if self.tick == 1:
                         core.get_map().get_player().direction = False
                         core.get_map().get_player().set_image(6)
-                        core.get_map().get_player().rect.x += 20
+                        core.get_map().get_player().rect.x += 25
                     elif self.tick >= 30:
                         core.get_map().get_player().flag_animation_move(core, True)
                         core.get_map().get_player().update_image(core)

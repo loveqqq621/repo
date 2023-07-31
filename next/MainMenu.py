@@ -4,7 +4,7 @@ import sys
 
 
 from Const import *
-from Text import Text, Text_ch
+from Text import Text
 
 
 class MainMenu(object):
@@ -19,9 +19,11 @@ class MainMenu(object):
 
     def render_end(self, core):
         # core.screen.blit(pg.image.load(r'images/ending.png').convert_alpha(), (0,0))
-        FPS = 25.5
+        # FPS = 59.94
+        # size = width, height = 1280, 720  # 设置窗口大小
+        # screen = pg.display.set_mode(size)
         # FPSClock = pg.time.Clock()
-        videoCapture = cv2.VideoCapture("images/opening.mp4")
+        videoCapture = cv2.VideoCapture("images/end_v112.mp4")
 
 
         while True:
@@ -46,12 +48,14 @@ class MainMenu(object):
                     continue
                 if frame is not None:
 
-                    frame = pg.surfarray.make_surface(frame)
+                    # origin_frame_size = (720, 1280)
+
+                    frame = pg.surfarray.make_surface(cv2.resize(frame, (WINDOW_H, WINDOW_W)))
 
                     frame=pg.transform.flip(frame,False,True)
-                    
 
-                # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)    
+                # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) 
+                    core.clock.tick(59.94)   
                     core.screen.blit(frame, (0,0))
             else:
                 break

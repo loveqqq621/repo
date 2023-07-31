@@ -60,7 +60,7 @@ class Map(object):
         self.oGameUI = GameUI()
 
     def loadWorld_11(self):
-        tmx_data = load_pygame("worlds/1-1/W11_ver0723.tmx")
+        tmx_data = load_pygame(TMX_FILE)
         self.mapSize = (tmx_data.width, tmx_data.height)
 
         self.sky = pg.Surface((WINDOW_W, WINDOW_H))
@@ -143,8 +143,8 @@ class Map(object):
 
         self.map[144][8].bonus = 'ring'
         self.map[151][4].bonus = 'ring'
-        self.map[168][8].bonus = 'ring'
-        self.map[170][8].bonus = 'ring'
+        self.map[165][8].bonus = 'ring'
+        self.map[167][8].bonus = 'ring'
 
 
         self.flag = Flag(6336, 48)
@@ -370,7 +370,7 @@ class Map(object):
         elif self.get_player().rect.x > 5400:
             # print(111)
             core.get_sound().stop('overworld')
-            core.get_sound().play('end_bgm', 0, 0.5)
+            core.get_sound().play('bgm', 0, 0.5)
         
 
 

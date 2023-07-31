@@ -495,7 +495,7 @@ class Player(object):
             blocks = core.get_map().get_blocks_for_collision(x, y)
 
             self.rect.x += self.x_vel
-            if self.rect.colliderect(core.get_map().map[205][11]):
+            if self.rect.colliderect(core.get_map().map[205][12]):
                 self.visible = False
                 core.get_map().get_event().player_in_castle = True
             self.update_x_pos(blocks)

@@ -1,7 +1,7 @@
 import pygame as pg
 
 from Const import *
-from Text import Text, Text_ch
+from Text import Text
 
 
 class LoadingMenu(object):

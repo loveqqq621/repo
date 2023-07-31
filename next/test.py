@@ -189,28 +189,33 @@ import os
 
 
 pygame.init()  # 初始化pygame
-FPS = 25.5
+FPS = 59.94
 #设置窗口位置
 os.environ["SDL_VIDEO_WINDOW_POS"]="%d,%d" % (50,70)
 # FPSClock = pygame.time.Clock()
-size = width, height = 1280, 720  # 设置窗口大小
+size = width, height = 800, 488  # 设置窗口大小
 screen = pygame.display.set_mode(size)  # 显示窗口
-pygame.display.set_caption(u"打字游戏:反应练习")
+# pygame.display.set_caption(u"打字游戏:反应练习")
 color = (255, 255, 255)  # 设置颜色
 
 # ogg=pygame.mixer.Sound("game.ogg")
 # pygame.mixer.music.load("")
 
-videoCapture = cv2.VideoCapture("images/opening.mp4")
-
+videoCapture = cv2.VideoCapture("images/end_v100.mp4")
+# cv2.namedWindow('name', )
 
 while True:
     a=pygame.time.get_ticks()
     if videoCapture.isOpened():
         #从opncv读一段视频进来
         ret, frame = videoCapture.read()
+        
+
+        # cv2.namedWindow("test", 0)  
+           # 设置窗口的长和宽
+        # cv2.imshow('test', frame)
         #下面这句可以获取图像大小
-        # print("frame.shape:", frame.shape)
+        print("frame.shape:", frame.shape)
         # 
         # rot90(m, k=1, axes=(0, 1)
         # m是要旋转的数组(矩阵)，
@@ -221,11 +226,12 @@ while True:
         try:
             # frame = np.rot90(frame,k=-1)
             frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-            print(frame)
+            # print(frame)
         except:
             continue
         if frame is not None:
-
+            # print(frame)
+            frame = cv2.resize(frame, (488, 800))
             frame = pygame.surfarray.make_surface(frame)
 
             frame=pygame.transform.flip(frame,False,True)

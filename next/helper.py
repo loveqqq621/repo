@@ -1,11 +1,12 @@
 import pygame
 from pytmx.util_pygame import load_pygame
+from Const import *
 # from PIL import Image
 
 # 在窗口中显示图片
 pygame.init()
 screen = pygame.display.set_mode((256, 256))
-tmx_data = load_pygame("worlds/1-1/W11_ver0723.tmx")
+tmx_data = load_pygame(TMX_FILE)
 layer_num = 0
 tileID_lst = []
 for layer in tmx_data.visible_layers:
