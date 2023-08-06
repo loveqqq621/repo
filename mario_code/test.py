@@ -249,3 +249,9 @@ while True:
     # b=pygame.time.get_ticks()
 videoCapture.release()
 cv2.destroyAllWindows()
+
+
+
+
+import pygame as pg
+pg.mixer.music.load('/Users/Q/Desktop/personal/mario/repo/mario_code/materials/sounds/bgm.MP3')

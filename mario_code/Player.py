@@ -42,6 +42,10 @@ class Player(object):
 
         self.rect = pg.Rect(x_pos, y_pos, 32, 32)
 
+        # self.rect_end = pg.Rect(x_pos+416, y_pos, 32, 32)
+
+
+
     def load_sprites(self):
         self.sprites = [
             # 0 Small, stay
@@ -499,11 +503,13 @@ class Player(object):
             blocks = core.get_map().get_blocks_for_collision(x, y)
 
             self.rect.x += self.x_vel
-            if self.rect.colliderect(core.get_map().map[205][12]):
+            # 家门坐标
+            # if self.rect.colliderect(core.get_map().map[246][12]):
+            if self.rect.colliderect(core.get_map().map[HOME_X][HOME_Y]):
                 self.visible = False
                 core.get_map().get_event().player_in_castle = True
+            
             self.update_x_pos(blocks)
-
             self.rect.top += self.y_vel
             self.update_y_pos(blocks, core)
 

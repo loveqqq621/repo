@@ -28,13 +28,13 @@ MAX_FALL_SPEED = 5.5
 # icons tiled id
 
 # 黄色问号 - 出coin
-QUESTION_ICON_ID = 229
+QUESTION_ICON_ID = 230
 
 # 砖块
-BRICK_ID = 230
+BRICK_ID = 231
 
 # 粉色问号 - 出蘑菇\戒指
-QUESTION_SPECIAL_ID = 231
+QUESTION_SPECIAL_ID = 232
 
 import os
 file_path = os.path.abspath(__file__)
@@ -42,5 +42,12 @@ file_path = os.path.dirname(file_path)
 file_path = os.path.join(file_path, 'materials/')
 
 
-TMX_FILE = os.path.join(file_path, 'worlds/W11_ver112.tmx')
+TMX_FILE = os.path.join(file_path, 'worlds/W11_ver113.tmx')
 
+# FLAG POSITION -> 32*方格id
+FLAG_X = 7488
+FLAG_Y = 48
+
+# HOME POSITION -> 方格id
+HOME_X = 256
+HOME_Y = 12

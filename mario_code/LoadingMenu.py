@@ -33,9 +33,9 @@ class LoadingMenu(object):
         self.text = Text(text, 32, (WINDOW_W / 2, WINDOW_H / 2))
         self.loadingType = type
 
-    def set_text_and_type_ch(self, text, type):
-        self.text = Text_ch(text, 32, (WINDOW_W / 2, WINDOW_H / 2))
-        self.loadingType = type
+    # def set_text_and_type_ch(self, text, type):
+    #     self.text = Text_ch(text, 32, (WINDOW_W / 2, WINDOW_H / 2))
+    #     self.loadingType = type
 
     def render(self, core):
         core.screen.blit(self.bg, (0, 0))

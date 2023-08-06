@@ -31,6 +31,9 @@ class Sound(object):
         self.sounds['shot'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/shot.wav'))
         self.sounds['bgm'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/bgm.MP3'))
 
+        # self.sounds['bgm'] = pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
+
+
     def play(self, name, loops, volume):
         self.sounds[name].play(loops=loops)
         self.sounds[name].set_volume(volume)
@@ -42,3 +45,9 @@ class Sound(object):
         if core.get_map().get_name() == '1-1':
             self.stop('overworld')
             self.play('overworld_fast', 99999, 0.5)
+
+    def play_end(self, loops, volume):
+        pg.mixer.init()
+        bgm = pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
+        bgm.play(loops=loops)
+        bgm.set_volume(volume)
