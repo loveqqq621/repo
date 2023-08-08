@@ -12,6 +12,7 @@ class Sound(object):
         self.load_sounds()
 
     def load_sounds(self):
+        # pg.mixer.pre_init(44100, -16, 2, 1024)
         self.sounds['overworld'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/overworld.wav'))
         self.sounds['overworld_fast'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/overworld-fast.wav'))
         self.sounds['level_end'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/levelend.wav'))
@@ -29,7 +30,7 @@ class Sound(object):
         self.sounds['scorering'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/scorering.wav'))
         self.sounds['fireball'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/fireball.wav'))
         self.sounds['shot'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/shot.wav'))
-        self.sounds['bgm'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/bgm.MP3'))
+        # self.sounds['bgm'] = pg.mixer.Sound(os.path.join(file_path, 'sounds/bgm.MP3'))
 
         # self.sounds['bgm'] = pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
 
@@ -46,8 +47,13 @@ class Sound(object):
             self.stop('overworld')
             self.play('overworld_fast', 99999, 0.5)
 
-    def play_end(self, loops, volume):
-        pg.mixer.init()
-        bgm = pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
-        bgm.play(loops=loops)
-        bgm.set_volume(volume)
+    def play_end(self):
+        # pg.mixer.stop()
+        # pg.mixer.quit()
+        # pg.mixer.init()
+            
+        # self.play(name, loops, volume)
+        # pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
+        # print('playend')
+        pg.mixer.music.unpause()
+        

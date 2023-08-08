@@ -8,6 +8,8 @@ GRAVITY = 0.08
 # 左右键加速度
 SPEED_INCREASE_RATE = 0.038
 
+SPEED_INCREASE_RATE_FAST = 5
+
 # 左右键减速度：如果没有按方向键，会减速
 SPEED_DECREASE_RATE = 0.018
 # SPEED_DECREASE_RATE = 0.038
@@ -45,9 +47,18 @@ file_path = os.path.join(file_path, 'materials/')
 TMX_FILE = os.path.join(file_path, 'worlds/W11_ver113.tmx')
 
 # FLAG POSITION -> 32*方格id
+# 234*32 = 7488
 FLAG_X = 7488
 FLAG_Y = 48
 
 # HOME POSITION -> 方格id
 HOME_X = 256
 HOME_Y = 12
+
+# 红毯坐标 5250
+RED_CARPET = 5250
+
+
+# 加速起始&结束坐标 - 红毯？188-230
+SPEED_INCREASE_RATE_FAST_START = 6016
+SPEED_INCREASE_RATE_FAST_END = 7360

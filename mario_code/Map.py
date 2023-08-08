@@ -18,6 +18,7 @@ from PlatformDebris import PlatformDebris
 from CoinDebris import CoinDebris
 from Fireball import Fireball
 from Text import Text
+from Sound import Sound
 
 
 class Map(object):
@@ -216,7 +217,7 @@ class Map(object):
             self.map[x][y + 3],
             self.map[x + 1][y + 3]
         )
-
+    
     def get_blocks_below(self, x, y):
         """
 
@@ -372,12 +373,24 @@ class Map(object):
             self.is_mob_spawned[1] = True
         
         # 红毯音乐
-        elif self.get_player().rect.x > 5250:
+        elif self.get_player().rect.x > RED_CARPET:
             # print(111)
             core.get_sound().stop('overworld')
-            core.get_sound().play('bgm', 0, 0.5)
+            pg.mixer.music.unpause()
+            # pg.mixer.quit()
+            # pg.mixer.stop()
+            # core.get_sound_end()
+            
+    
+
+            # pg.mixer.init()
+            # pg.mixer.pause()
+            # print('--')
             # core.get_sound().play_end(0, 0.5)
-        
+
+            # pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
+            # pg.mixer.music.set_volume(0.5)
+            # pg.mixer.music.play(loops=0)
 
 
     def player_death(self, core):
@@ -439,8 +452,8 @@ class Map(object):
             self.get_camera().update(core.get_map().get_player().rect)
             # 
 
-        else:
-            core.get_map().get_player().pos_x += 416
+        elif core.get_map().get_player().direction:
+            # core.get_map().get_player().pos_x += 736
             # print('---')
             # print(core.get_map().get_player().pos_x)
             self.get_camera().update(core.get_map().get_player().rect)

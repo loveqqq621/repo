@@ -59,7 +59,7 @@ class Event(object):
 
         """
         self.type = 1
-        self.delay = 2000
+        self.delay = 3000
         self.time = 0
 
         core.get_sound().stop('overworld')
@@ -68,7 +68,7 @@ class Event(object):
 
         core.get_map().get_player().set_image(5)
         core.get_map().get_player().x_vel = 1
-        core.get_map().get_player().rect.x += 10
+        core.get_map().get_player().rect.x += 16
 
         # Adding score depends on the map's time left.
         if core.get_map().time >= 300:
@@ -117,7 +117,7 @@ class Event(object):
                     if self.tick == 1:
                         core.get_map().get_player().direction = False
                         core.get_map().get_player().set_image(6)
-                        core.get_map().get_player().rect.x += 25
+                        core.get_map().get_player().rect.x += 24
                     elif self.tick >= 30:
                         core.get_map().get_player().flag_animation_move(core, True)
                         core.get_map().get_player().update_image(core)
@@ -143,8 +143,8 @@ class Event(object):
 
 
                         # 通关文字修改
-                        core.get_mm().oLoadingMenu.set_text_and_type('TO BE CONTINUED', False)
-                        core.get_mm().oLoadingMenu.update_time()
+                        # core.get_mm().oLoadingMenu.set_text_and_type('TO BE CONTINUED', False)
+                        # core.get_mm().oLoadingMenu.update_time()
 
                         # 通关提示音修改
                         # core.get_sound().play('end_bgm', 0, 0.5)

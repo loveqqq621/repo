@@ -1,4 +1,3 @@
-video_path = 'images/opening.mp4'
 
 # import cv2
 
@@ -186,6 +185,9 @@ import sys
 import cv2
 import numpy as np
 import os
+file_path = os.path.abspath(__file__)
+file_path = os.path.dirname(file_path)
+file_path = os.path.join(file_path, 'materials/')
 
 
 pygame.init()  # 初始化pygame
@@ -201,7 +203,10 @@ color = (255, 255, 255)  # 设置颜色
 # ogg=pygame.mixer.Sound("game.ogg")
 # pygame.mixer.music.load("")
 
-videoCapture = cv2.VideoCapture("images/end_v100.mp4")
+pygame.init()
+pygame.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
+pygame.mixer.music.play()
+videoCapture = cv2.VideoCapture(os.path.join(file_path, "images/end_v113.mp4"))
 # cv2.namedWindow('name', )
 
 while True:
@@ -251,7 +256,3 @@ videoCapture.release()
 cv2.destroyAllWindows()
 
 
-
-
-import pygame as pg
-pg.mixer.music.load('/Users/Q/Desktop/personal/mario/repo/mario_code/materials/sounds/bgm.MP3')
