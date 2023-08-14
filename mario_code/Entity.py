@@ -46,8 +46,51 @@ class Entity(object):
                         self.rect.bottom = block.rect.top
                         self.y_vel = 0
 
+
+    def update_x_pos_flower(self, blocks):
+        self.rect.x += self.x_vel
+
+        for block in blocks:
+            if block != 0 and block.type != 'BGObject':
+                # print(self.rect.left, self.rect.right, self.rect.top, self.rect.bottom)
+
+                if pg.Rect.colliderect(self.rect, block.rect):
+                    if self.x_vel > 0:
+                        # print('greater 0', block.rect.left)
+                        self.rect.right = block.rect.left
+                        self.x_vel = - self.x_vel
+                    elif self.x_vel < 0:
+                        self.rect.left = block.rect.right
+                        self.x_vel = - self.x_vel
+
+    def update_y_pos_flower(self, blocks):
+        # print(self.rect.y)
+        self.rect.y += self.y_vel * FALL_MULTIPLIER
+
+        self.on_ground = False
+        for block in blocks:
+            if block != 0 and block.type != 'BGObject':
+                
+                if pg.Rect.colliderect(self.rect, block.rect):
+                    # print(self.rect.y)
+                    # print('update_y_pos_flower', self.rect.left, self.rect.right, self.rect.top, self.rect.bottom)
+
+                    if self.y_vel > 0:
+                        self.on_ground = True
+                        self.rect.bottom = block.rect.top
+                        self.y_vel = 0
+
+
+
     def check_map_borders(self, core):
         if self.rect.y >= 448:
+            self.die(core, True, False)
+        if self.rect.x <= 1 and self.x_vel < 0:
+            self.x_vel = - self.x_vel
+
+
+    def check_map_borders_flower(self, core):
+        if self.rect.y >= 384:
             self.die(core, True, False)
         if self.rect.x <= 1 and self.x_vel < 0:
             self.x_vel = - self.x_vel

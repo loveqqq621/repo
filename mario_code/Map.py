@@ -18,6 +18,7 @@ from PlatformDebris import PlatformDebris
 from CoinDebris import CoinDebris
 from Fireball import Fireball
 from Text import Text
+from Sound import Sound
 
 
 class Map(object):
@@ -117,10 +118,14 @@ class Map(object):
         self.spawn_tube(37, 9)
         self.spawn_tube(46, 8)
         self.spawn_tube(55, 8)
+
+
+
         # self.spawn_tube(163, 10)
         # self.spawn_tube(179, 10)
 
         # Mobs
+
         # (23, 11)
         self.mobs.append(Goombas(736, 352, False))
         # (40, 11)
@@ -147,7 +152,8 @@ class Map(object):
         self.map[167][8].bonus = 'ring'
 
 
-        self.flag = Flag(6336, 48)
+        # self.flag = Flag(6336, 48)
+        self.flag = Flag(FLAG_X_POS, FLAG_Y_POS)
 
     def reset(self, reset_all):
         self.obj = []
@@ -211,7 +217,7 @@ class Map(object):
             self.map[x][y + 3],
             self.map[x + 1][y + 3]
         )
-
+    
     def get_blocks_below(self, x, y):
         """
 
@@ -367,11 +373,11 @@ class Map(object):
             self.is_mob_spawned[1] = True
         
         # 红毯音乐
-        elif self.get_player().rect.x > 5400:
+        elif self.get_player().rect.x > RED_CARPET:
             # print(111)
             core.get_sound().stop('overworld')
-            core.get_sound().play('bgm', 0, 0.5)
-        
+            pg.mixer.music.unpause()
+
 
 
     def player_death(self, core):
@@ -412,6 +418,7 @@ class Map(object):
                 self.update_player(core)
 
         else:
+            # print('event')
             self.get_event().update(core)
 
         # Debris is 1) Particles which appears when player destroy a brick block
@@ -428,8 +435,17 @@ class Map(object):
             text_object.update(core)
 
         # Camera stops moving when player dies or touches a flag
+        # 更改结尾摄像头移动距离 - 改成
         if not self.in_event:
             self.get_camera().update(core.get_map().get_player().rect)
+            # 
+
+        elif core.get_map().get_player().direction:
+            # core.get_map().get_player().pos_x += 736
+            # print('---')
+            # print(core.get_map().get_player().pos_x)
+            self.get_camera().update(core.get_map().get_player().rect)
+
 
         self.try_spawn_mobs(core)
         self.update_time(core)

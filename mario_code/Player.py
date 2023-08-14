@@ -42,6 +42,10 @@ class Player(object):
 
         self.rect = pg.Rect(x_pos, y_pos, 32, 32)
 
+        # self.rect_end = pg.Rect(x_pos+416, y_pos, 32, 32)
+
+
+
     def load_sprites(self):
         self.sprites = [
             # 0 Small, stay
@@ -139,13 +143,22 @@ class Player(object):
         self.update_image(core)
         self.update_unkillable_time()
 
+
     def player_physics(self, core):
-        if core.keyR:
-            self.x_vel += SPEED_INCREASE_RATE
-            self.direction = True
-        if core.keyL:
-            self.x_vel -= SPEED_INCREASE_RATE
-            self.direction = False
+        if self.rect.x > SPEED_INCREASE_RATE_FAST_START and  SPEED_INCREASE_RATE_FAST_END:
+            if core.keyR:
+                self.x_vel += SPEED_INCREASE_RATE_FAST
+                self.direction = True
+            if core.keyL:
+                self.x_vel -= SPEED_INCREASE_RATE_FAST
+                self.direction = False
+        else:
+            if core.keyR:
+                self.x_vel += SPEED_INCREASE_RATE
+                self.direction = True
+            if core.keyL:
+                self.x_vel -= SPEED_INCREASE_RATE
+                self.direction = False
         if not core.keyU:
             self.already_jumped = False
         elif core.keyU:
@@ -161,12 +174,13 @@ class Player(object):
         # Fireball shoot and fast moving
         self.fast_moving = False
         if core.keyShift:
-            self.fast_moving = True
-            if self.powerLVL == 2:
-                if pg.time.get_ticks() > self.next_fireball_time:
-                    if not (self.inLevelUpAnimation or self.inLevelDownAnimation):
-                        if len(core.get_map().projectiles) < 2:
-                            self.shoot_fireball(core, self.rect.x, self.rect.y, self.direction)
+            pass
+            # self.fast_moving = True
+            # if self.powerLVL == 2:
+            #     if pg.time.get_ticks() > self.next_fireball_time:
+            #         if not (self.inLevelUpAnimation or self.inLevelDownAnimation):
+            #             if len(core.get_map().projectiles) < 2:
+            #                 self.shoot_fireball(core, self.rect.x, self.rect.y, self.direction)
 
         if not (core.keyR or core.keyL):
             if self.x_vel > 0:
@@ -233,9 +247,13 @@ class Player(object):
         if self.rect.y > 448:
             core.get_map().player_death(core)
 
-        # End Flag collision check
-        if self.rect.colliderect(core.get_map().flag.pillar_rect):
+        # red carpet check
+        if self.rect.x >= RED_CARPET_FLAT_X_POS:
             core.get_map().player_win(core)
+
+        # End Flag collision check
+        # if self.rect.colliderect(core.get_map().flag.pillar_rect):
+        #     core.get_map().player_win(core)
 
     def set_image(self, image_id):
 
@@ -498,12 +516,16 @@ class Player(object):
             y = self.rect.y // 32
             blocks = core.get_map().get_blocks_for_collision(x, y)
 
+            # 结尾旗杆动画
             self.rect.x += self.x_vel
-            if self.rect.colliderect(core.get_map().map[205][12]):
+            # print(self.rect.x)
+            # 家门坐标
+            # if self.rect.colliderect(core.get_map().map[246][12]):
+            if self.rect.colliderect(core.get_map().map[HOME_X][HOME_Y]):
                 self.visible = False
                 core.get_map().get_event().player_in_castle = True
+            
             self.update_x_pos(blocks)
-
             self.rect.top += self.y_vel
             self.update_y_pos(blocks, core)
 
@@ -521,10 +543,37 @@ class Player(object):
             if core.get_map().flag.flag_rect.y + 20 > self.rect.y + self.rect.h:
                 self.rect.y += 3
 
-    def shoot_fireball(self, core, x, y, move_direction):
-        core.get_map().spawn_fireball(x, y, move_direction)
-        core.get_sound().play('fireball', 0, 0.5)
-        self.next_fireball_time = pg.time.get_ticks() + 400
+
+    def red_carpet_move(self, core):
+        """
+        red carpet running
+        """
+
+        x = self.rect.x // 32
+        y = self.rect.y // 32
+        blocks = core.get_map().get_blocks_for_collision(x, y)
+
+        self.rect.x += self.x_vel * 2.9
+ 
+        self.update_x_pos(blocks)
+        self.rect.top += self.y_vel
+        self.update_y_pos(blocks, core)
+        x = self.rect.x // 32
+        y = self.rect.y // 32
+        if self.powerLVL > 0:
+            y += 1
+        for block in core.get_map().get_blocks_below(x, y):
+            if block != 0 and block.type != 'BGObject':
+                if pg.Rect(self.rect.x, self.rect.y + 1, self.rect.w, self.rect.h).colliderect(block.rect):
+                    self.on_ground = True
+
+
+
+
+    # def shoot_fireball(self, core, x, y, move_direction):
+    #     core.get_map().spawn_fireball(x, y, move_direction)
+    #     core.get_sound().play('fireball', 0, 0.5)
+    #     self.next_fireball_time = pg.time.get_ticks() + 400
 
     def add_coins(self, count):
         self.coins += count

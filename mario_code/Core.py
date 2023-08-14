@@ -7,6 +7,7 @@ from Const import *
 from Map import Map
 from MenuManager import MenuManager
 from Sound import Sound
+from Player import Player
 
 
 class Core(object):
@@ -17,8 +18,15 @@ class Core(object):
     """
     def __init__(self):
         environ['SDL_VIDEO_CENTERED'] = '1'
-        pg.mixer.pre_init(44100, -16, 2, 1024)
+        # pg.mixer.pre_init(44100, -16, 2, 262144)
         pg.init()
+        pg.mixer.init()
+        
+        pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
+        pg.mixer.music.set_volume(0.5)
+        pg.mixer.music.play(0)
+        pg.mixer.music.pause()
+        
         pg.display.set_caption('Mario Limited Edition')
         pg.display.set_mode((WINDOW_W, WINDOW_H))
 

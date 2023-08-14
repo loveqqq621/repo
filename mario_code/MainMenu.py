@@ -27,7 +27,7 @@ class MainMenu(object):
         # size = width, height = 1280, 720  # 设置窗口大小
         # screen = pg.display.set_mode(size)
         # FPSClock = pg.time.Clock()
-        videoCapture = cv2.VideoCapture(os.path.join(file_path, "images/end_v112.mp4"))
+        videoCapture = cv2.VideoCapture(os.path.join(file_path, "images/end_v113.mp4"))
 
 
         while True:

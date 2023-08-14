@@ -11,9 +11,7 @@ from Const import *
 class Flower(Entity):
     def __init__(self, x_pos, y_pos, move_direction):
         super().__init__()
-
-        self.rect = pg.Rect(x_pos, y_pos, 32, 32)
-
+        self.rect = pg.Rect(x_pos, y_pos-32, 42, 64)
         if move_direction:
             self.x_vel = 1
         else:
@@ -21,7 +19,8 @@ class Flower(Entity):
 
         self.spawned = False
         self.spawn_y_offset = 0
-        self.image = pg.image.load(os.path.join(file_path,'images/ring_remake.png')).convert_alpha()
+        self.image = pg.image.load(os.path.join(file_path,'images/ring_remake_larger.png')).convert_alpha()
+
 
     def check_collision_with_player(self, core):
         if self.rect.colliderect(core.get_map().get_player().rect):
@@ -44,12 +43,13 @@ class Flower(Entity):
             if not self.on_ground:
                 self.y_vel += GRAVITY
 
-            blocks = core.get_map().get_blocks_for_collision(self.rect.x // 32, self.rect.y // 32)
+            blocks = core.get_map().get_blocks_for_collision(self.rect.x // 32, (self.rect.y) // 32)
             self.update_x_pos(blocks)
             self.update_y_pos(blocks)
-
             self.check_map_borders(core)
+
         else:
+            # print('spawn_animation')
             self.spawn_animation()
 
     def render(self, core):
