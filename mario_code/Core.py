@@ -110,6 +110,3 @@ class Core(object):
 
     def get_sound(self):
         return self.oSound
-    
-    # def get_sound_end(self):
-    #     return self.oSound.play_end(0, 0.5)

@@ -46,14 +46,3 @@ class Sound(object):
         if core.get_map().get_name() == '1-1':
             self.stop('overworld')
             self.play('overworld_fast', 99999, 0.5)
-
-    def play_end(self):
-        # pg.mixer.stop()
-        # pg.mixer.quit()
-        # pg.mixer.init()
-            
-        # self.play(name, loops, volume)
-        # pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
-        # print('playend')
-        pg.mixer.music.unpause()
-        

@@ -247,9 +247,13 @@ class Player(object):
         if self.rect.y > 448:
             core.get_map().player_death(core)
 
-        # End Flag collision check
-        if self.rect.colliderect(core.get_map().flag.pillar_rect):
+        # red carpet check
+        if self.rect.x >= RED_CARPET_FLAT_X_POS:
             core.get_map().player_win(core)
+
+        # End Flag collision check
+        # if self.rect.colliderect(core.get_map().flag.pillar_rect):
+        #     core.get_map().player_win(core)
 
     def set_image(self, image_id):
 
@@ -538,6 +542,33 @@ class Player(object):
         else:
             if core.get_map().flag.flag_rect.y + 20 > self.rect.y + self.rect.h:
                 self.rect.y += 3
+
+
+    def red_carpet_move(self, core):
+        """
+        red carpet running
+        """
+
+        x = self.rect.x // 32
+        y = self.rect.y // 32
+        blocks = core.get_map().get_blocks_for_collision(x, y)
+
+        self.rect.x += self.x_vel * 2.9
+ 
+        self.update_x_pos(blocks)
+        self.rect.top += self.y_vel
+        self.update_y_pos(blocks, core)
+        x = self.rect.x // 32
+        y = self.rect.y // 32
+        if self.powerLVL > 0:
+            y += 1
+        for block in core.get_map().get_blocks_below(x, y):
+            if block != 0 and block.type != 'BGObject':
+                if pg.Rect(self.rect.x, self.rect.y + 1, self.rect.w, self.rect.h).colliderect(block.rect):
+                    self.on_ground = True
+
+
+
 
     # def shoot_fireball(self, core, x, y, move_direction):
     #     core.get_map().spawn_fireball(x, y, move_direction)

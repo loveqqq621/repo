@@ -30,13 +30,13 @@ MAX_FALL_SPEED = 5.5
 # icons tiled id
 
 # 黄色问号 - 出coin
-QUESTION_ICON_ID = 230
+QUESTION_ICON_ID = 246
 
 # 砖块
-BRICK_ID = 231
+BRICK_ID = 247
 
 # 粉色问号 - 出蘑菇\戒指
-QUESTION_SPECIAL_ID = 232
+QUESTION_SPECIAL_ID = 248
 
 import os
 file_path = os.path.abspath(__file__)
@@ -47,16 +47,27 @@ file_path = os.path.join(file_path, 'materials/')
 TMX_FILE = os.path.join(file_path, 'worlds/W11_ver113.tmx')
 
 # FLAG POSITION -> 32*方格id
-# 234*32 = 7488
-FLAG_X = 7488
-FLAG_Y = 48
+
+FLAG_X = 220
+
+FLAG_X_POS = 7040
+# FLAG_X_POS = 832
+FLAG_Y_POS = 48
 
 # HOME POSITION -> 方格id
-HOME_X = 256
+HOME_X = 246
 HOME_Y = 12
 
-# 红毯坐标 5250
+# 红毯坐标*32 =  5250
 RED_CARPET = 5250
+
+
+# 红毯平坦坐标 （186，5）
+RED_CARPET_FLAT_X = 186
+
+
+
+RED_CARPET_FLAT_X_POS = 5952
 
 
 # 加速起始&结束坐标 - 红毯？188-230

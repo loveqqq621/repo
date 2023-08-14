@@ -153,7 +153,7 @@ class Map(object):
 
 
         # self.flag = Flag(6336, 48)
-        self.flag = Flag(FLAG_X, FLAG_Y)
+        self.flag = Flag(FLAG_X_POS, FLAG_Y_POS)
 
     def reset(self, reset_all):
         self.obj = []
@@ -377,20 +377,7 @@ class Map(object):
             # print(111)
             core.get_sound().stop('overworld')
             pg.mixer.music.unpause()
-            # pg.mixer.quit()
-            # pg.mixer.stop()
-            # core.get_sound_end()
-            
-    
 
-            # pg.mixer.init()
-            # pg.mixer.pause()
-            # print('--')
-            # core.get_sound().play_end(0, 0.5)
-
-            # pg.mixer.music.load(os.path.join(file_path, 'sounds/bgm.MP3'))
-            # pg.mixer.music.set_volume(0.5)
-            # pg.mixer.music.play(loops=0)
 
 
     def player_death(self, core):
@@ -431,6 +418,7 @@ class Map(object):
                 self.update_player(core)
 
         else:
+            # print('event')
             self.get_event().update(core)
 
         # Debris is 1) Particles which appears when player destroy a brick block
